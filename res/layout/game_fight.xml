@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".FightGameActivity" >
+
+    <!-- Game area -->
+    <RelativeLayout
+        android:id="@+id/game_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/chessboard_bg" >
+
+        <cq.game.fivechess.game.GameView
+            android:id="@+id/game_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <!-- Score area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/game_area"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
+
+        <LinearLayout
+            android:id="@+id/black_area"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/black_large" />
+
+            <TextView
+                android:id="@+id/black_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/black"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/black_active"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/black_active" />
+            
+            <TextView
+                android:id="@+id/black_win"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@android:color/black"
+                android:gravity="right"
+                android:textSize="16sp" />
+            
+        </LinearLayout>
+
+        <TextView android:layout_width="wrap_content" 
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0"
+            android:textColor="@android:color/black"
+            android:text=":"
+            />
+        
+        <RelativeLayout
+            android:id="@+id/white_area"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <ImageView android:id="@+id/white_chess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/white_large" />
+            
+            <TextView
+                android:id="@+id/white_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/white_chess"
+                android:text="@string/white"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+            
+            <ImageView
+                android:id="@+id/white_active"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/white_name"
+                android:src="@drawable/white_active" />
+            
+            <TextView
+                android:id="@+id/white_win"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/white_active"
+                android:gravity="left"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+    
+    <!-- Control Button -->
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/game_area"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        >
+        
+        <Button android:id="@+id/restart"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:background="@drawable/btn_bg_game"
+            android:text="@string/restart"/>
+        
+        <Button android:id="@+id/rollback"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_game"
+            android:text="@string/rollback"/>
+        
+        <Button android:id="@+id/setting"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_game"
+            android:text="@string/setting"/>
+        
+        <Button android:id="@+id/about"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_game"
+            android:text="@string/about"/>
+    </LinearLayout>
+    
+</RelativeLayout>
