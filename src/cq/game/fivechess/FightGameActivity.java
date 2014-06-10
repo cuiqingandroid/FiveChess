@@ -27,11 +27,9 @@ public class FightGameActivity extends Activity implements OnClickListener {
     Player black;
     Player white;
     
-    // Ê¤¾Ö
     private TextView mBlackWin;
     private TextView mWhiteWin;
     
-    // µ±Ç°Âä×Ó·½
     private ImageView mBlackActive;
     private ImageView mWhiteActive;
     
@@ -41,9 +39,6 @@ public class FightGameActivity extends Activity implements OnClickListener {
     private Button about;
     private Button setting;
     
-    /**
-     * ´¦ÀíÓÎÏ·»Øµ÷ÐÅÏ¢£¬Ë¢ÐÂ½çÃæ
-     */
     private Handler mRefreshHandler = new Handler(){
         
         public void handleMessage(Message msg) {
@@ -51,10 +46,10 @@ public class FightGameActivity extends Activity implements OnClickListener {
             switch (msg.what) {
             case GameConstants.GAME_OVER:
                 if (msg.arg1 == Game.BLACK){
-                    showWinDialog("ºÚ·½Ê¤£¡");
+                    showWinDialog("é»‘æ–¹èƒœ");
                     black.win();
                 } else if (msg.arg1 == Game.WHITE) {
-                    showWinDialog("°×·½Ê¤£¡");
+                    showWinDialog("ç™½æ–¹èƒœ");
                     white.win();
                 } 
                 updateScore(black, white);
@@ -121,7 +116,7 @@ public class FightGameActivity extends Activity implements OnClickListener {
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setCancelable(false);
         b.setMessage(message);
-        b.setPositiveButton("¼ÌÐø", new DialogInterface.OnClickListener() {
+        b.setPositiveButton(R.string.Continue, new DialogInterface.OnClickListener() {
             
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -129,7 +124,7 @@ public class FightGameActivity extends Activity implements OnClickListener {
                 mGameView.drawGame();
             }
         });
-        b.setNegativeButton("ÍË³ö", new DialogInterface.OnClickListener() {
+        b.setNegativeButton(R.string.exit, new DialogInterface.OnClickListener() {
             
             @Override
             public void onClick(DialogInterface dialog, int which) {
