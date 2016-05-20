@@ -49,17 +49,17 @@ public class ConnectionActivity extends Activity implements OnClickListener
     private String mIP;
     private ConnnectingService mCM;
     
-    // Áª»úÇëÇó¶Ô»°¿ò
+    // è”æœºè¯·æ±‚å¯¹è¯æ¡†
     private AlertDialog mConnectDialog;
-    // Áª»úÇëÇóµÈ´ı¶Ô»°¿ò
+    // è”æœºè¯·æ±‚ç­‰å¾…å¯¹è¯æ¡†
     private ProgressDialog waitDialog;
-    // ÏÔÊ¾ÁÄÌì¶Ô»°¿ò
+    // æ˜¾ç¤ºèŠå¤©å¯¹è¯æ¡†
     private Dialog mChatDialog;
     private ChatAdapter mChatAdapter;
     private List<ChatContent> mChats = new ArrayList<ChatContent>();
     
     /**
-     * ´¦ÀíÍøÂç»Øµ÷ĞÅÏ¢£¬Ë¢ĞÂ½çÃæ
+     * å¤„ç†ç½‘ç»œå›è°ƒä¿¡æ¯ï¼Œåˆ·æ–°ç•Œé¢
      */
     private Handler mHandler = new Handler(){
         
@@ -104,7 +104,7 @@ public class ConnectionActivity extends Activity implements OnClickListener
                 if (waitDialog != null && waitDialog.isShowing()) {
                     waitDialog.dismiss();
                 }
-                Toast.makeText(ConnectionActivity.this, "¶Ô·½¾Ü¾øÁËÄãµÄÇëÇó",
+                Toast.makeText(ConnectionActivity.this, "å¯¹æ–¹æ‹’ç»äº†ä½ çš„è¯·æ±‚",
                         Toast.LENGTH_LONG).show();
             default:
                 break;
@@ -133,12 +133,12 @@ public class ConnectionActivity extends Activity implements OnClickListener
                     long id) {
                 String ipDst = mConnections.get(position).ip;
                 mCM.sendAskConnect(ipDst);
-                String title = "ÇëÇó¶ÔÕ½";
-                String message = "µÈ´ı"+ipDst+"»ØÓ¦.ÇëÉÔºó....";
+                String title = "è¯·æ±‚å¯¹æˆ˜";
+                String message = "ç­‰å¾…"+ipDst+"å›åº”.è¯·ç¨å....";
                 showProgressDialog(title, message);
             }
         });
-        // ÆÁ±Î¶Ô»°¹¦ÄÜ
+        // å±è”½å¯¹è¯åŠŸèƒ½
 //        mListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 //
 //            @Override
@@ -154,7 +154,7 @@ public class ConnectionActivity extends Activity implements OnClickListener
     private void initNet(){
         mIP = getIp();
         if (TextUtils.isEmpty(mIP)){
-            Toast.makeText(this, "Çë¼ì²éwifiÁ¬½ÓºóÖØÊÔ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "è¯·æ£€æŸ¥wifiè¿æ¥åé‡è¯•", Toast.LENGTH_LONG).show();
             finish();
         }
 
@@ -182,7 +182,7 @@ public class ConnectionActivity extends Activity implements OnClickListener
     }
     
     /**
-     * ´ÓÏûÏ¢ÀïÃæ»ñÈ¡Êı¾İ²¢Éú³ÉConnectionItem¶ÔÏó
+     * ä»æ¶ˆæ¯é‡Œé¢è·å–æ•°æ®å¹¶ç”ŸæˆConnectionItemå¯¹è±¡
      * @param msg
      * @return ConnectionItem
      */
@@ -196,20 +196,20 @@ public class ConnectionActivity extends Activity implements OnClickListener
     }
     
     /**
-     * »ñÈ¡±¾»úµÄipµØÖ·,Í¨¹ıwifiÁ¬½Ó¾ÖÓòÍøµÄÇé¿ö
-     * @return ipµØÖ·
+     * è·å–æœ¬æœºçš„ipåœ°å€,é€šè¿‡wifiè¿æ¥å±€åŸŸç½‘çš„æƒ…å†µ
+     * @return ipåœ°å€
      */
     private String getIp(){
         WifiManager wm = (WifiManager)getSystemService(Context.WIFI_SERVICE);
-        //¼ì²éWifi×´Ì¬  
+        //æ£€æŸ¥WifiçŠ¶æ€  
         if(!wm.isWifiEnabled()){
             Log.d(TAG, "wifi is not enable,enable wifi first");
             return null;
         }
         WifiInfo wi = wm.getConnectionInfo();
-        //»ñÈ¡32Î»ÕûĞÍIPµØÖ·  
+        //è·å–32ä½æ•´å‹IPåœ°å€  
         int ipAdd = wi.getIpAddress();
-        //°ÑÕûĞÍµØÖ·×ª»»³É¡°*.*.*.*¡±µØÖ·  
+        //æŠŠæ•´å‹åœ°å€è½¬æ¢æˆâ€œ*.*.*.*â€åœ°å€  
         String ip=intToIp(ipAdd);
         Log.d(TAG, "ip:"+ip);
         return ip;
@@ -281,13 +281,13 @@ public class ConnectionActivity extends Activity implements OnClickListener
     }
     
     /**
-     * ÏÔÊ¾ÁÄÌìÄÚÈİ¶Ô»°¿ò
+     * æ˜¾ç¤ºèŠå¤©å†…å®¹å¯¹è¯æ¡†
      */
     private void showChatDialog(){
         if (mChatDialog == null){
             AlertDialog.Builder b = new AlertDialog.Builder(this);
             b.setIcon(R.drawable.chat);
-            b.setTitle("¶Ô»°");
+            b.setTitle("å¯¹è¯");
             View view = getLayoutInflater().inflate(R.layout.chat_dialog, null);
             ListView list = (ListView) view.findViewById(R.id.list_chat);
             mChatAdapter = new ChatAdapter(this, mChats);
@@ -309,7 +309,7 @@ public class ConnectionActivity extends Activity implements OnClickListener
     private void showMenuDialog(final String ipDst){
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setIcon(R.drawable.chat);
-        b.setTitle("¶Ô»°");
+        b.setTitle("å¯¹è¯");
         View view = getLayoutInflater().inflate(R.layout.chat_edit, null);
         final EditText edit = (EditText) view.findViewById(R.id.chat_edit);
         Button send = (Button) view.findViewById(R.id.chat_send);
@@ -319,7 +319,7 @@ public class ConnectionActivity extends Activity implements OnClickListener
             public void onClick(View v) {
                 String content = edit.getText().toString();
                 if (TextUtils.isEmpty(content)){
-                    Toast.makeText(ConnectionActivity.this, "ÄÚÈİ²»ÄÜÎª¿Õ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ConnectionActivity.this, "å†…å®¹ä¸èƒ½ä¸ºç©º", Toast.LENGTH_SHORT).show();
                 } else {
                     edit.setText("");
                     mCM.sendChat(content, ipDst);

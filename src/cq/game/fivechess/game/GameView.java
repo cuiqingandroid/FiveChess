@@ -18,9 +18,8 @@ import android.view.View;
 import cq.game.fivechess.R;
 
 /**
- * ¸ºÔğÓÎÏ·µÄÏÔÊ¾£¬ÓÎÏ·µÄÂß¼­ÅĞ¶ÏÔÚGame.javaÖĞ
+ * è´Ÿè´£æ¸¸æˆçš„æ˜¾ç¤ºï¼Œæ¸¸æˆçš„é€»è¾‘åˆ¤æ–­åœ¨Game.javaä¸­
  * @author cuiqing
- * @email cuiqing19870826@163.com
  *
  */
 public class GameView extends SurfaceView implements SurfaceHolder.Callback{
@@ -28,18 +27,18 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     private static final String TAG = "GameView";
     private static final boolean DEBUG = true;
     
-    // ¶¨ÒåSurfaceHolder¶ÔÏó
+    // å®šä¹‰SurfaceHolderå¯¹è±¡
     SurfaceHolder mHolder = null;
     
-    // Æå×Ó»­±Ê
+    // æ£‹å­ç”»ç¬”
     private Paint chessPaint = new Paint();;
-    // ÆåÅÌ»­±Ê
+    // æ£‹ç›˜ç”»ç¬”
     private Paint boardPaint = new Paint();
     private int boardColor = 0;
     private float boardWidth = 0.0f;
     private float anchorWidth = 0.0f;
     
-    // ÇåÆÁ»­±Ê
+    // æ¸…å±ç”»ç¬”
     Paint clear = new Paint();
     
     public int[][] mChessArray = null;
@@ -78,7 +77,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     private void init(){
         mHolder = this.getHolder();
         mHolder.addCallback(this);
-        // ÉèÖÃÍ¸Ã÷
+        // è®¾ç½®é€æ˜
         mHolder.setFormat(PixelFormat.TRANSLUCENT);
         setZOrderOnTop(true);
         chessPaint.setAntiAlias(true);
@@ -89,7 +88,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     }
     
     /**
-     * ÉèÖÃÓÎÏ·
+     * è®¾ç½®æ¸¸æˆ
      * @param game
      */
     public void setGame(Game game){
@@ -99,7 +98,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // ÉèÖÃ¸ß¶ÈÓë¿í¶ÈÒ»Ñù
+        // è®¾ç½®é«˜åº¦ä¸å®½åº¦ä¸€æ ·
         int width = View.MeasureSpec.getSize(widthMeasureSpec);
         if(mGame != null){
             if (width % mGame.getWidth() == 0){
@@ -134,7 +133,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     }
 
     /**
-     * »æÖÆÓÎÏ·½çÃæ
+     * ç»˜åˆ¶æ¸¸æˆç•Œé¢
      */
     public void drawGame(){
         Canvas canvas = mHolder.lockCanvas();
@@ -142,7 +141,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
             Log.d(TAG, "mholde="+mHolder+"  canvas="+canvas);
             return;
         }
-        // ÇåÆÁ  £ºÊÇ·ñ¿ÉÒÔ²»ÓÃÇåÆÁ£¬ÓÃË«»º³å¼¼ÊõÊµÏÖ
+        // æ¸…å±  ï¼šæ˜¯å¦å¯ä»¥ä¸ç”¨æ¸…å±ï¼Œç”¨åŒç¼“å†²æŠ€æœ¯å®ç°
         canvas.drawPaint(clear);
         drawChessBoard(canvas);
         drawChess(canvas);
@@ -151,9 +150,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     }
     
     /**
-     * Ôö¼ÓÒ»¸öÆå×Ó
-     * @param x ºá×ø±ê
-     * @param y ×İ×ø±ê
+     * å¢åŠ ä¸€ä¸ªæ£‹å­
+     * @param x æ¨ªåæ ‡
+     * @param y çºµåæ ‡
      */
     public void addChess(int x, int y){
         if (mGame == null){
@@ -195,10 +194,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     }
 
     /**
-     * ÅĞ¶ÏÊÇ·ñÈ¡Ïû´Ë´ÎÏÂ×Ó
-     * @param x xÎ»ÖÃ
-     * @param y yÎ»ÖÃ
-     * @param down °´ÏÂµÄµãÎ»
+     * åˆ¤æ–­æ˜¯å¦å–æ¶ˆæ­¤æ¬¡ä¸‹å­
+     * @param x xä½ç½®
+     * @param y yä½ç½®
      * @return
      */
     private boolean canAdd(float x, float y, Coordinate focus){
@@ -207,10 +205,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     }
     
     /**
-     * ´´½¨Æå×Ó
-     * @param width VIEWµÄ¿í¶È
-     * @param height VIEWµÄ¸ß¶È
-     * @param type ÀàĞÍ¡ª¡ª°××Ó»òºÚ×Ó
+     * åˆ›å»ºæ£‹å­
+     * @param width VIEWçš„å®½åº¦
+     * @param height VIEWçš„é«˜åº¦
+     * @param type ç±»å‹â€”â€”ç™½å­æˆ–é»‘å­
      * @return Bitmap
      */
     private Bitmap createChess(int width, int height, int type){
@@ -234,7 +232,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
         return bitmap;
     }
     
-    // »­ÆåÅÌ±³¾°
+    // ç”»æ£‹ç›˜èƒŒæ™¯
     private void drawChessBoard(){
         Canvas canvas = mHolder.lockCanvas();
         if (mHolder == null || canvas == null) {
@@ -244,28 +242,28 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
         mHolder.unlockCanvasAndPost(canvas);
     }
     
-    // »­ÆåÅÌ±³¾°
+    // ç”»æ£‹ç›˜èƒŒæ™¯
     private void drawChessBoard(Canvas canvas){
-        // »æÖÆÃªµã(ÖĞĞÄµã)
+        // ç»˜åˆ¶é”šç‚¹(ä¸­å¿ƒç‚¹)
         int startX = mChessSize/2;
         int startY = mChessSize/2;
         int endX = startX + (mChessSize * (mChessboardWidth - 1));
         int endY = startY + (mChessSize * (mChessboardHeight- 1));
-        // draw ÊúÖ±Ïß
+        // draw ç«–ç›´çº¿
         for (int i = 0; i < mChessboardWidth; ++i){
             canvas.drawLine(startX+(i*mChessSize), startY, startX+(i*mChessSize), endY, boardPaint);
         }
-        // draw Ë®Æ½Ïß
+        // draw æ°´å¹³çº¿
         for (int i = 0; i < mChessboardHeight; ++i){
             canvas.drawLine(startX, startY+(i*mChessSize), endX, startY+(i*mChessSize), boardPaint);
         }
-        // »æÖÆÃªµã(ÖĞĞÄµã)
+        // ç»˜åˆ¶é”šç‚¹(ä¸­å¿ƒç‚¹)
         int circleX = startX+mChessSize*(mChessboardWidth/2);
         int circleY = startY+mChessSize*(mChessboardHeight/2);;
         canvas.drawCircle(circleX, circleY, anchorWidth, boardPaint);
     }
     
-    // »­Æå×Ó
+    // ç”»æ£‹å­
     private void drawChess(Canvas canvas){
         int[][] chessMap = mGame.getChessMap();
         for (int x = 0; x < chessMap.length; ++x){
@@ -278,7 +276,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
                 }
             }
         }
-        // »­×îĞÂÏÂµÄÒ»¸öÆå×Ó
+        // ç”»æœ€æ–°ä¸‹çš„ä¸€ä¸ªæ£‹å­
         if (mGame.getActions() != null && mGame.getActions().size() > 0){
             Coordinate last = mGame.getActions().getLast();
             int lastType = chessMap[last.x][last.y];
@@ -291,7 +289,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     }
     
     /**
-     * »­µ±Ç°¿ò
+     * ç”»å½“å‰æ¡†
      * @param canvas
      */
     private void drawFocus(Canvas canvas){
@@ -317,7 +315,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        // ³õÊ¼»¯ÆåÅÌ
+        // åˆå§‹åŒ–æ£‹ç›˜
         drawChessBoard();
     }
 

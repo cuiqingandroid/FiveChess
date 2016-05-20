@@ -1,8 +1,8 @@
 package cq.game.fivechess.game;
 
 /**
- * ×ø±êÀà
- * @author qingc
+ * åæ ‡ç±»
+ * @author cuiqing
  */
 public class Coordinate {
     public int x;

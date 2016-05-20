@@ -34,15 +34,15 @@ public class NetGameActivity extends Activity implements OnClickListener{
     Player me;
     Player challenger;
 
-    // Ê¤¾Ö
+    // èƒœå±€
     private TextView mBlackWin;
     private TextView mWhiteWin;
     
-    // µ±Ç°Âä×Ó·½
+    // å½“å‰è½å­æ–¹
     private ImageView mBlackActive;
     private ImageView mWhiteActive;
     
-    // ĞÕÃû
+    // å§“å
     private TextView mBlackName;
     private TextView mWhiteName;
     
@@ -52,17 +52,17 @@ public class NetGameActivity extends Activity implements OnClickListener{
     private Button requestEqual;
     private Button fail;
     
-    // ÍøÂç·şÎñ
+    // ç½‘ç»œæœåŠ¡
     private ConnectedService mService;
     boolean isServer;
     
-    // Á¬½ÓµÈ´ı¿ò
+    // è¿æ¥ç­‰å¾…æ¡†
     private ProgressDialog waitDialog;
     
     private boolean isRequest ;
     
     /**
-     * ´¦ÀíÓÎÏ·»Øµ÷ĞÅÏ¢£¬Ë¢ĞÂ½çÃæ
+     * å¤„ç†æ¸¸æˆå›è°ƒä¿¡æ¯ï¼Œåˆ·æ–°ç•Œé¢
      */
     private Handler mRefreshHandler = new Handler(){
         
@@ -71,10 +71,10 @@ public class NetGameActivity extends Activity implements OnClickListener{
             switch (msg.what) {
             case GameConstants.GAME_OVER:
                 if (msg.arg1 == me.getType()){
-                    showWinDialog("¹§Ï²Äã£¡ÄãÓ®ÁË£¡");
+                    showWinDialog("æ­å–œä½ ï¼ä½ èµ¢äº†ï¼");
                     me.win();
                 } else if (msg.arg1 == challenger.getType()) {
-                    showWinDialog("ºÜÒÅº¶£¡ÄãÊäÁË£¡");
+                    showWinDialog("å¾ˆé—æ†¾ï¼ä½ è¾“äº†ï¼");
                     challenger.win();
                 } else {
                     Log.d(TAG, "type="+msg.arg1);
@@ -94,7 +94,7 @@ public class NetGameActivity extends Activity implements OnClickListener{
     };
     
     /**
-     * ´¦ÀíÍøÂçĞÅÏ¢£¬¸üĞÂ½çÃæ
+     * å¤„ç†ç½‘ç»œä¿¡æ¯ï¼Œæ›´æ–°ç•Œé¢
      */
     private Handler mRequestHandler = new Handler(){
         
@@ -113,13 +113,13 @@ public class NetGameActivity extends Activity implements OnClickListener{
                 showRollbackDialog();
                 break;
             case ROLLBACK_AGREE:
-                Toast.makeText(NetGameActivity.this, "¶Ô·½Í¬Òâ»ÚÆå", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NetGameActivity.this, "å¯¹æ–¹åŒæ„æ‚”æ£‹", Toast.LENGTH_SHORT).show();
                 rollback();
                 isRequest = false;
                 break;
             case ROLLBACK_REJECT:
                 isRequest = false;
-                Toast.makeText(NetGameActivity.this, "¶Ô·½¾Ü¾øÁËÄãµÄÇëÇó", Toast.LENGTH_LONG).show();
+                Toast.makeText(NetGameActivity.this, "å¯¹æ–¹æ‹’ç»äº†ä½ çš„è¯·æ±‚", Toast.LENGTH_LONG).show();
                 break;
             default:
                 break;
@@ -162,10 +162,10 @@ public class NetGameActivity extends Activity implements OnClickListener{
     private void initGame(){
         Bundle b = getIntent().getExtras();
         if (b == null){
-            Toast.makeText(this, "½¨Á¢ÍøÂçÊ§°Ü,ÇëÖØÊÔ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "å»ºç«‹ç½‘ç»œå¤±è´¥,è¯·é‡è¯•", Toast.LENGTH_SHORT).show();
             finish();
         }
-        showProgressDialog(null, "½¨Á¢Á¬½ÓÖĞ£¬ÇëÉÔºó");
+        showProgressDialog(null, "å»ºç«‹è¿æ¥ä¸­ï¼Œè¯·ç¨å");
         isServer = b.getBoolean("isServer");
         String ip = b.getString("ip");
         mService = new ConnectedService(mRequestHandler, ip, isServer);
@@ -228,7 +228,7 @@ public class NetGameActivity extends Activity implements OnClickListener{
     private void showWinDialog(String message){
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setMessage(message);
-        b.setPositiveButton("¼ÌĞø", new DialogInterface.OnClickListener() {
+        b.setPositiveButton("ç»§ç»­", new DialogInterface.OnClickListener() {
             
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -236,7 +236,7 @@ public class NetGameActivity extends Activity implements OnClickListener{
                 mGameView.drawGame();
             }
         });
-        b.setNegativeButton("ÍË³ö", new DialogInterface.OnClickListener() {
+        b.setNegativeButton("é€€å‡º", new DialogInterface.OnClickListener() {
             
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -279,7 +279,7 @@ public class NetGameActivity extends Activity implements OnClickListener{
         mGameView.drawGame();
     }
     
-    // ÏÔÊ¾µÈ´ı¿ò
+    // æ˜¾ç¤ºç­‰å¾…æ¡†
     private void showProgressDialog(String title, String message){
         if (waitDialog == null){
             waitDialog = new ProgressDialog(this);
@@ -295,7 +295,7 @@ public class NetGameActivity extends Activity implements OnClickListener{
     
     private void showRollbackDialog(){
         AlertDialog.Builder b = new AlertDialog.Builder(this);
-        b.setMessage("ÊÇ·ñÍ¬Òâ¶Ô·½»ÚÆå");
+        b.setMessage("æ˜¯å¦åŒæ„å¯¹æ–¹æ‚”æ£‹");
         b.setCancelable(false);
         b.setPositiveButton(R.string.agree, new DialogInterface.OnClickListener() {
             

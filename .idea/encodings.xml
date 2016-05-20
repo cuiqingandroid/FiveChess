@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/cq/game/fivechess/ConnectionActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cq/game/fivechess/NetGameActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cq/game/fivechess/SingleGameActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cq/game/fivechess/game/ComputerAI.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cq/game/fivechess/game/Coordinate.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cq/game/fivechess/game/Game.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cq/game/fivechess/game/GameConstants.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cq/game/fivechess/game/GameView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cq/game/fivechess/game/Player.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cq/game/fivechess/net/ConnectedService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cq/game/fivechess/net/ConnnectingService.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

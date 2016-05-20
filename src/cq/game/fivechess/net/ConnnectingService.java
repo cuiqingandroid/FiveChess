@@ -20,12 +20,11 @@ import android.os.Message;
 import android.util.Log;
 
 /**
- * Áª»ú¹ÜÀí<br>
- * ³õÊ¼»¯Õâ¸ö¶ÔÏóºó£¬µ÷ÓÃ{@link #start()}·½·¨¾Í»áËÑË÷¾ÖÓòÍø
- * ÄÚµÄ¿ÉÁ¬½ÓÊÖ»ú£¬Í¬Ê±×Ô¼ºÒ²»á³ÉÎª±ğÈË¿É¼ûµÄ¶ÔÏó¡£<br>
- * µ±ËÑË÷µ½¿ÉÁª»ú¶ÔÏóºó»á·µ»Ø¿ÉÁ¬¶ÔÏóµÄ»úÆ÷ÃûºÍIPµØÖ·¡£
+ * è”æœºç®¡ç†<br>
+ * åˆå§‹åŒ–è¿™ä¸ªå¯¹è±¡åï¼Œè°ƒç”¨{@link #start()}æ–¹æ³•å°±ä¼šæœç´¢å±€åŸŸç½‘
+ * å†…çš„å¯è¿æ¥æ‰‹æœºï¼ŒåŒæ—¶è‡ªå·±ä¹Ÿä¼šæˆä¸ºåˆ«äººå¯è§çš„å¯¹è±¡ã€‚<br>
+ * å½“æœç´¢åˆ°å¯è”æœºå¯¹è±¡åä¼šè¿”å›å¯è¿å¯¹è±¡çš„æœºå™¨åå’ŒIPåœ°å€ã€‚
  * @author cuiqing
- * @email cuiqing19870826@163.com
  *
  */
 public class ConnnectingService {
@@ -35,25 +34,25 @@ public class ConnnectingService {
     
     private String mIp;
     
-    // UPD½ÓÊÕ³ÌĞò
+    // UPDæ¥æ”¶ç¨‹åº
     private DatagramSocket mDataSocket;
     
-    // µã¶Ô¶à¹ã²¥
+    // ç‚¹å¯¹å¤šå¹¿æ’­
     private MulticastSocket mMulticastSocket;
     private InetAddress mCastAddress;
     
-    // ¹ã²¥×éµØÖ·
+    // å¹¿æ’­ç»„åœ°å€
     private static final String MUL_IP = "230.0.2.2";
     private static final int MUL_PORT = 1688;
     private static final int UDP_PORT = 2599;
     
-    // ½ÓÊÕUPDÏûÏ¢
+    // æ¥æ”¶UPDæ¶ˆæ¯
     private UDPReceiver mUdpReceiver;
-    // ½ÓÊÕ¹ã²¥ÏûÏ¢
+    // æ¥æ”¶å¹¿æ’­æ¶ˆæ¯
     private MulticastReceiver mMulticastReceiver; 
-    // udpÏûÏ¢·¢ËÍÄ£¿é
+    // udpæ¶ˆæ¯å‘é€æ¨¡å—
     private UdpSendHandler mUdpSender;
-    // ¹ã²¥ÏûÏ¢·¢ËÍÄ£¿é
+    // å¹¿æ’­æ¶ˆæ¯å‘é€æ¨¡å—
     private MulticastSendHandler mBroadCastSender;
     
     private Handler mRequestHandler;
@@ -66,7 +65,7 @@ public class ConnnectingService {
     }
     
     /**
-     * Æô¶¯Á¬½Ó³ÌĞò
+     * å¯åŠ¨è¿æ¥ç¨‹åº
      */
     public void start(){
         mUdpReceiver.start();
@@ -89,7 +88,7 @@ public class ConnnectingService {
     }
     
     /**
-     * ·¢ËÍÒ»¸ö²éÑ¯¹ã²¥ÏûÏ¢£¬²éÑ¯µ±Ç°¿ÉÁ¬½Ó¶ÔÏó
+     * å‘é€ä¸€ä¸ªæŸ¥è¯¢å¹¿æ’­æ¶ˆæ¯ï¼ŒæŸ¥è¯¢å½“å‰å¯è¿æ¥å¯¹è±¡
      */
     public void sendScanMsg(){
         Message msg = Message.obtain();
@@ -100,12 +99,12 @@ public class ConnnectingService {
     }
 
     /**
-     * ·¢ËÍÒ»¸ö²éÑ¯¹ã²¥ÏûÏ¢£¬ÍË³ö¿ÉÁª»ú
+     * å‘é€ä¸€ä¸ªæŸ¥è¯¢å¹¿æ’­æ¶ˆæ¯ï¼Œé€€å‡ºå¯è”æœº
      */
     public void sendExitMsg(){
-        // ÆğÒ»¸öÏß³Ì·¢ËÍÒ»¸ö¾ÖÓòÍø¹ã²¥(androidÖ÷Ïß³Ì²»ÄÜÓĞÍøÂç²Ù×÷)
-        // ²»ÓÃmMulticastSocket¶ÔÏó·¢ËÍÊ±ÒòÎªÍË³öµÄÊ±ºòÉæ¼°¿çÏß³Ì²Ù×÷
-        // ¿ÉÄÜmMulticastSocketÒÑ¾­close×´Ì¬£¬²»¿É¿Ø
+        // èµ·ä¸€ä¸ªçº¿ç¨‹å‘é€ä¸€ä¸ªå±€åŸŸç½‘å¹¿æ’­(androidä¸»çº¿ç¨‹ä¸èƒ½æœ‰ç½‘ç»œæ“ä½œ)
+        // ä¸ç”¨mMulticastSocketå¯¹è±¡å‘é€æ—¶å› ä¸ºé€€å‡ºçš„æ—¶å€™æ¶‰åŠè·¨çº¿ç¨‹æ“ä½œ
+        // å¯èƒ½mMulticastSocketå·²ç»closeçŠ¶æ€ï¼Œä¸å¯æ§
         new Thread(){
             public void run() {
                 MulticastSocket multicastSocket;
@@ -115,9 +114,9 @@ public class ConnnectingService {
                     multicastSocket.setTimeToLive(1);
                     byte[] buf = packageBroadcast(BROADCAST_EXIT);
                     DatagramPacket datagramPacket = new DatagramPacket(buf, buf.length);
-                    // ½ÓÊÕµØÖ·ºÍgroupµÄ±êÊ¶ÏàÍ¬
+                    // æ¥æ”¶åœ°å€å’Œgroupçš„æ ‡è¯†ç›¸åŒ
                     datagramPacket.setAddress(address); 
-                    // ·¢ËÍÖÁµÄ¶Ë¿ÚºÅ
+                    // å‘é€è‡³çš„ç«¯å£å·
                     datagramPacket.setPort(MUL_PORT); 
                     multicastSocket.send(datagramPacket);
                     multicastSocket.close();
@@ -129,7 +128,7 @@ public class ConnnectingService {
     }
     
     /**
-     * ·¢ËÍÇëÇóÁ¬½ÓÏûÏ¢
+     * å‘é€è¯·æ±‚è¿æ¥æ¶ˆæ¯
      * @param ipDst
      */
     public void sendAskConnect(String ipDst){
@@ -143,7 +142,7 @@ public class ConnnectingService {
     }
     
     /**
-     * ·¢ËÍÁÄÌìÄÚÈİ
+     * å‘é€èŠå¤©å†…å®¹
      * @param content
      * @param ipDst
      */
@@ -158,7 +157,7 @@ public class ConnnectingService {
     }
     
     /**
-     * Í¬ÒâÁª»ú
+     * åŒæ„è”æœº
      */
     public void accept(String ipDst){
         Message msg = Message.obtain();
@@ -171,7 +170,7 @@ public class ConnnectingService {
     }
     
     /**
-     * ¾Ü¾øÇëÇó
+     * æ‹’ç»è¯·æ±‚
      */
     public void reject(String ipDst){
         Message msg = Message.obtain();
@@ -184,7 +183,7 @@ public class ConnnectingService {
     }
     
     /**
-     * ½ÓÊÕUDPÏûÏ¢,Î´½¨Á¢TCPÁ¬½ÓÖ®Ç°£¬¶¼Í¨¹ıudp½ÓÊÕÏûÏ¢
+     * æ¥æ”¶UDPæ¶ˆæ¯,æœªå»ºç«‹TCPè¿æ¥ä¹‹å‰ï¼Œéƒ½é€šè¿‡udpæ¥æ”¶æ¶ˆæ¯
      * @author qingc
      *
      */
@@ -214,7 +213,7 @@ public class ConnnectingService {
                     mDataSocket.receive(dataPacket);
                     if (DEBUG) Log.d(TAG, "udp received:"+Arrays.toString(buf));
                     int type = buf[0];
-                    // ´ÓbufferÖĞ½ØÈ¡ÊÕµ½µÄÊı¾İ
+                    // ä»bufferä¸­æˆªå–æ”¶åˆ°çš„æ•°æ®
                     byte[] body = new byte[dataPacket.getLength() - 1];
                     System.arraycopy(buf, 1, body, 0, dataPacket.getLength()-1);
                     switch (type) {
@@ -252,7 +251,7 @@ public class ConnnectingService {
     }
 
     /**
-     * ·¢ËÍUDPÏûÏ¢£¬Î´½¨Á¢TCPÁ¬½ÓÖ®Ç°£¬¶¼Í¨¹ıUDP·¢ËÍÖ¸Áîµ½ÖÆ¶¨µÄip
+     * å‘é€UDPæ¶ˆæ¯ï¼Œæœªå»ºç«‹TCPè¿æ¥ä¹‹å‰ï¼Œéƒ½é€šè¿‡UDPå‘é€æŒ‡ä»¤åˆ°åˆ¶å®šçš„ip
      */
     class UdpSendHandler extends Handler {
         
@@ -278,7 +277,7 @@ public class ConnnectingService {
                 }
                 InetAddress dstAddress = InetAddress.getByName(ipDst);
                 
-                // ´´½¨·¢ËÍÊı¾İ°ü
+                // åˆ›å»ºå‘é€æ•°æ®åŒ…
                 DatagramPacket dataPacket = new DatagramPacket(data, data.length, dstAddress, UDP_PORT);
                 ds.send(dataPacket);
             } catch (UnknownHostException e1) {
@@ -297,7 +296,7 @@ public class ConnnectingService {
     }
     
     /**
-     * ½ÓÊÕ¹ã²¥ÏûÏ¢Ïß³Ì£¬¼àÌıÆäËûÊÖ»úµÄÉ¨Ãè»ò¼ÓÈë¹ã²¥
+     * æ¥æ”¶å¹¿æ’­æ¶ˆæ¯çº¿ç¨‹ï¼Œç›‘å¬å…¶ä»–æ‰‹æœºçš„æ‰«ææˆ–åŠ å…¥å¹¿æ’­
      *
      */
     class MulticastReceiver extends Thread{
@@ -311,15 +310,15 @@ public class ConnnectingService {
         public MulticastReceiver() {
             try {
                 multiSocket = new MulticastSocket();
-                // ½ÓÊÕÊı¾İÊ±ĞèÒªÖ¸¶¨¼àÌıµÄ¶Ë¿ÚºÅ
+                // æ¥æ”¶æ•°æ®æ—¶éœ€è¦æŒ‡å®šç›‘å¬çš„ç«¯å£å·
                 multiSocket = new MulticastSocket(MUL_PORT);
-                // ¼ÓÈë¹ã²¥×é
+                // åŠ å…¥å¹¿æ’­ç»„
                 InetAddress address = InetAddress.getByName(MUL_IP);
                 mCastAddress = address;
                 multiSocket.joinGroup(address);
                 multiSocket.setTimeToLive(1);
                 dataPacket = new DatagramPacket(buffer, buffer.length);
-                // È«¾ÖÒıÓÃÖ¸ÏòÕâÀïµÄ¹ã²¥socket,ÓÃÓÚ·¢ËÍ¹ã²¥ÏûÏ¢
+                // å…¨å±€å¼•ç”¨æŒ‡å‘è¿™é‡Œçš„å¹¿æ’­socket,ç”¨äºå‘é€å¹¿æ’­æ¶ˆæ¯
                 mMulticastSocket = multiSocket;
             } catch (IOException e) {
                 isInit = false;
@@ -331,9 +330,9 @@ public class ConnnectingService {
         public void run() {
             try {
                 while (isInit) {
-                    // ½ÓÊÕÊı¾İ£¬»á½øÈë×èÈû×´Ì¬
+                    // æ¥æ”¶æ•°æ®ï¼Œä¼šè¿›å…¥é˜»å¡çŠ¶æ€
                     mMulticastSocket.receive(dataPacket); 
-                    // ´ÓbufferÖĞ½ØÈ¡ÊÕµ½µÄÊı¾İ
+                    // ä»bufferä¸­æˆªå–æ”¶åˆ°çš„æ•°æ®
                     byte[] message = new byte[dataPacket.getLength()]; 
                     System.arraycopy(buffer, 0, message, 0, dataPacket.getLength());
                     Log.d(TAG, "multicast receive:"+ Arrays.toString(message));
@@ -363,7 +362,7 @@ public class ConnnectingService {
     }
 
     /**
-     * ·¢ËÍ¹ã²¥ÏûÏ¢
+     * å‘é€å¹¿æ’­æ¶ˆæ¯
      */
     class MulticastSendHandler extends Handler {
         
@@ -388,9 +387,9 @@ public class ConnnectingService {
             try {
                 // s.setTimeToLive(1);  is it nessary?
                 DatagramPacket datagramPacket = new DatagramPacket(buf, buf.length);
-                // ÉèÖÃ·¢ËÍgroupµØÖ·
+                // è®¾ç½®å‘é€groupåœ°å€
                 datagramPacket.setAddress(address); 
-                // ·¢ËÍÖÁµÄ¶Ë¿ÚºÅ
+                // å‘é€è‡³çš„ç«¯å£å·
                 datagramPacket.setPort(MUL_PORT); 
                 s.send(datagramPacket);
             } catch (IOException e) {
@@ -406,7 +405,7 @@ public class ConnnectingService {
     };
 
     /**
-     * ´íÎóĞÅÏ¢
+     * é”™è¯¯ä¿¡æ¯
      * @param error
      */
     private void onError(int error){
@@ -417,9 +416,9 @@ public class ConnnectingService {
     }
     
     /**
-     * ÓĞĞÂµÄ¿ÉÁª»ú¶ÔÏó¼ÓÈë
-     * @param name »úÆ÷Ãû
-     * @param ip µØÖ·
+     * æœ‰æ–°çš„å¯è”æœºå¯¹è±¡åŠ å…¥
+     * @param name æœºå™¨å
+     * @param ip åœ°å€
      */
     private void onJoin(String name, String ip){
         Message msg = Message.obtain();
@@ -432,9 +431,9 @@ public class ConnnectingService {
     }
     
     /**
-     * ÓĞ¿ÉÁª»ú¶ÔÏóÍË³ö
-     * @param name »úÆ÷Ãû
-     * @param ip µØÖ·
+     * æœ‰å¯è”æœºå¯¹è±¡é€€å‡º
+     * @param name æœºå™¨å
+     * @param ip åœ°å€
      */
     private void onExit(String name, String ip){
         Message msg = Message.obtain();
@@ -447,9 +446,9 @@ public class ConnnectingService {
     }
     
     /**
-     * ´¦ÀíUDP¼ÓÈë¿ÉÁ¬½Ó¶ÔÏóÏûÏ¢
-     * @param data ½ÓÊÕµ½µÄÏûÏ¢Ìå
-     * @return ·µ»Ø½âÎöµ½µÄipµØÖ·
+     * å¤„ç†UDPåŠ å…¥å¯è¿æ¥å¯¹è±¡æ¶ˆæ¯
+     * @param data æ¥æ”¶åˆ°çš„æ¶ˆæ¯ä½“
+     * @return è¿”å›è§£æåˆ°çš„ipåœ°å€
      */
     private void processUdpJoin(byte[] data){
         int nameLen = data[0];
@@ -465,13 +464,13 @@ public class ConnnectingService {
     }
     
     /**
-     * ½«±¾»úÃû³ÆºÍipµØÖ··â×°³ÉbyteÊı×é
+     * å°†æœ¬æœºåç§°å’Œipåœ°å€å°è£…æˆbyteæ•°ç»„
      * @return
      */
     private byte[] packageUdpJoin(){
         byte[] ip = mIp.getBytes();
         byte[] name = (Build.BRAND+"-"+Build.MODEL).getBytes();
-        // ÏûÏ¢³¤¶È°üÀ¨(Ãû×Ö¡¢Ãû×Ö³¤¶È¡¢ip¡¢ip³¤¶È¡¢¹ã²¥ÀàĞÍ) 
+        // æ¶ˆæ¯é•¿åº¦åŒ…æ‹¬(åå­—ã€åå­—é•¿åº¦ã€ipã€ipé•¿åº¦ã€å¹¿æ’­ç±»å‹) 
         int dataLen = name.length + ip.length + 3;
         byte[] data = new byte[dataLen];
         data[0] = UDP_JOIN;
@@ -485,9 +484,9 @@ public class ConnnectingService {
     }
     
     /**
-     * ´¦Àí¹ã²¥ÏûÏ¢
-     * @param data ½ÓÊÕµ½µÄÏûÏ¢Ìå
-     * @return ·µ»Ø½âÎöµ½µÄipµØÖ·
+     * å¤„ç†å¹¿æ’­æ¶ˆæ¯
+     * @param data æ¥æ”¶åˆ°çš„æ¶ˆæ¯ä½“
+     * @return è¿”å›è§£æåˆ°çš„ipåœ°å€
      */
     private String processBroadcast(byte[] data){
         int nameLen = data[0];
@@ -499,7 +498,7 @@ public class ConnnectingService {
         String name = new String(nameArr);
         String ip = new String(iparr);
         Log.d(TAG, "processBroadcast-->"+"name="+name+"  ip="+ip);
-        // Èç¹ûÊÇ×Ô¼º·¢ËÍµÄĞÅÏ¢£¬Ôò²»¼ÓÈë¿ÉÁ¬½Ó¼¯ºÏ
+        // å¦‚æœæ˜¯è‡ªå·±å‘é€çš„ä¿¡æ¯ï¼Œåˆ™ä¸åŠ å…¥å¯è¿æ¥é›†åˆ
         if (ip.equals(mIp)){
             return ip;
         }
@@ -513,13 +512,13 @@ public class ConnnectingService {
     }
     
     /**
-     * ½«±¾»úÃû³ÆºÍipµØÖ··â×°³ÉbyteÊı×é
+     * å°†æœ¬æœºåç§°å’Œipåœ°å€å°è£…æˆbyteæ•°ç»„
      * @return
      */
     private byte[] packageBroadcast(int type){
         byte[] ip = mIp.getBytes();
         byte[] name = (Build.BRAND+"-"+Build.MODEL).getBytes();
-        // ÏûÏ¢³¤¶È°üÀ¨(Ãû×Ö¡¢Ãû×Ö³¤¶È¡¢ip¡¢ip³¤¶È¡¢¹ã²¥ÀàĞÍ) 
+        // æ¶ˆæ¯é•¿åº¦åŒ…æ‹¬(åå­—ã€åå­—é•¿åº¦ã€ipã€ipé•¿åº¦ã€å¹¿æ’­ç±»å‹) 
         int dataLen = name.length + 1 + ip.length + 1 + 1;
         byte[] data = new byte[dataLen];
         int namePos = 0;
@@ -533,13 +532,13 @@ public class ConnnectingService {
     }
 
     /**
-     * ·â×°ÇëÇóÁ¬½ÓÏûÏ¢Ìå
+     * å°è£…è¯·æ±‚è¿æ¥æ¶ˆæ¯ä½“
      * @return data
      */
     private byte[] createAskConnect(){
         byte[] ip = mIp.getBytes();
         byte[] name = (Build.BRAND+"-"+Build.MODEL).getBytes();
-        // ÏûÏ¢³¤¶È°üÀ¨(Ãû×Ö¡¢Ãû×Ö³¤¶È¡¢ip¡¢ip³¤¶È¡¢¹ã²¥ÀàĞÍ) 
+        // æ¶ˆæ¯é•¿åº¦åŒ…æ‹¬(åå­—ã€åå­—é•¿åº¦ã€ipã€ipé•¿åº¦ã€å¹¿æ’­ç±»å‹) 
         int dataLen = name.length + ip.length + 3;
         byte[] data = new byte[dataLen];
         data[0] = CONNECT_ASK;
@@ -553,7 +552,7 @@ public class ConnnectingService {
     }
     
     /**
-     * ½âÎöÇëÇóÁª»úÊı¾İ
+     * è§£æè¯·æ±‚è”æœºæ•°æ®
      * @param data
      */
     private void processAsk(byte[] data){
@@ -576,14 +575,14 @@ public class ConnnectingService {
     }
     
     /**
-     * ´´½¨ÁÄÌìÄÚÈİÏûÏ¢Ìå
+     * åˆ›å»ºèŠå¤©å†…å®¹æ¶ˆæ¯ä½“
      * @return
      */
     private byte[] createChat(String content){
         byte[] ip = mIp.getBytes();
         byte[] name = (Build.BRAND).getBytes();
         byte[] chat = content.getBytes();
-        // ÏûÏ¢³¤¶È°üÀ¨(Ãû×Ö¡¢Ãû×Ö³¤¶È¡¢ip¡¢ip³¤¶È¡¢¹ã²¥ÀàĞÍ¡¢ÁÄÌìÄÚÈİ¡¢ÁÄÌì³¤¶È) 
+        // æ¶ˆæ¯é•¿åº¦åŒ…æ‹¬(åå­—ã€åå­—é•¿åº¦ã€ipã€ipé•¿åº¦ã€å¹¿æ’­ç±»å‹ã€èŠå¤©å†…å®¹ã€èŠå¤©é•¿åº¦) 
         int dataLen = name.length + ip.length + 3 + chat.length + 1;
         byte[] data = new byte[dataLen];
         data[0] = CHAT_ONE;
@@ -600,7 +599,7 @@ public class ConnnectingService {
     }
     
     /**
-     * ´¦ÀíÁÄÌìÄÚÈİ
+     * å¤„ç†èŠå¤©å†…å®¹
      * @param data
      */
     private void processChat(byte[] data){
@@ -630,14 +629,14 @@ public class ConnnectingService {
     }
     
     /**
-     * ´´½¨Á¬½ÓÏàÓ¦ÏûÏ¢
+     * åˆ›å»ºè¿æ¥ç›¸åº”æ¶ˆæ¯
      * @param type
-     * @return ÏûÏ¢Êı×é
+     * @return æ¶ˆæ¯æ•°ç»„
      */
     private byte[] createConnectResponse(int type){
         byte[] ip = mIp.getBytes();
         byte[] name = (Build.BRAND).getBytes();
-        // ÏûÏ¢³¤¶È°üÀ¨(Ãû×Ö¡¢Ãû×Ö³¤¶È¡¢ip¡¢ip³¤¶È¡¢¹ã²¥ÀàĞÍ) 
+        // æ¶ˆæ¯é•¿åº¦åŒ…æ‹¬(åå­—ã€åå­—é•¿åº¦ã€ipã€ipé•¿åº¦ã€å¹¿æ’­ç±»å‹) 
         int dataLen = name.length + ip.length + 3;
         byte[] data = new byte[dataLen];
         data[0] = (byte) type;
@@ -651,7 +650,7 @@ public class ConnnectingService {
     }
     
     /**
-     * ½âÎöÁ¬½ÓÇëÇóÏìÓ¦²¢´¦Àí
+     * è§£æè¿æ¥è¯·æ±‚å“åº”å¹¶å¤„ç†
      * @param data
      * @param type
      */

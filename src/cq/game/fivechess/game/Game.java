@@ -7,10 +7,8 @@ import android.os.Handler;
 import android.os.Message;
 
 /**
- * ´¦ÀíÓÎÏ·Âß¼­
+ * å¤„ç†æ¸¸æˆé€»è¾‘
  * @author cuiqing
- * @email cuiqing19870826@163.com
- *
  */
 public class Game {
 
@@ -18,14 +16,14 @@ public class Game {
     public static final int SCALE_MEDIUM = 15;
     public static final int SCALE_LARGE = 19;
     
-    // ×Ô¼º
+    // è‡ªå·±
     Player me;
-    // ¶ÔÊÖ
+    // å¯¹æ‰‹
     Player challenger;
     
     private int mMode = 0;
     
-    // Ä¬ÈÏºÚ×ÓÏÈ³ö
+    // é»˜è®¤é»‘å­å…ˆå‡º
     private int mActive = 1;
     int mGameWidth = 0;
     int mGameHeight = 0;
@@ -60,8 +58,8 @@ public class Game {
     }
     
     /**
-     * »ÚÆåÒ»×Ó
-     * @return ÊÇ·ñ¿ÉÒÔ»ÚÆå
+     * æ‚”æ£‹ä¸€å­
+     * @return æ˜¯å¦å¯ä»¥æ‚”æ£‹
      */
     public boolean rollback(){
         Coordinate c = mActions.pollLast();
@@ -74,26 +72,26 @@ public class Game {
     }
     
     /**
-     * ÓÎÏ·¿í¶È
-     * @return ÆåÅÌµÄÁĞÊı
+     * æ¸¸æˆå®½åº¦
+     * @return æ£‹ç›˜çš„åˆ—æ•°
      */
     public int getWidth(){
         return mGameWidth;
     }
     
     /**
-     * ÓÎÏ·¸ß¶È
-     * @return ÆåÅÌºáÊı
+     * æ¸¸æˆé«˜åº¦
+     * @return æ£‹ç›˜æ¨ªæ•°
      */
     public int getHeight(){
         return mGameHeight;
     }
     
     /**
-     * Âä×Ó
-     * @param x ºáÏòÏÂ±ê
-     * @param y ×İÏòÏÂ±ê
-     * @return µ±Ç°Î»ÖÃÊÇ·ñ¿ÉÒÔÏÂ×Ó
+     * è½å­
+     * @param x æ¨ªå‘ä¸‹æ ‡
+     * @param y çºµå‘ä¸‹æ ‡
+     * @return å½“å‰ä½ç½®æ˜¯å¦å¯ä»¥ä¸‹å­
      */
     public boolean addChess(int x, int y){
         if (mMode == GameConstants.MODE_FIGHT){
@@ -135,10 +133,10 @@ public class Game {
     }
     
     /**
-     * Âä×Ó
-     * @param x ºáÏòÏÂ±ê
-     * @param y ×İÏòÏÂ±ê
-     * @param player ÓÎÏ·Ñ¡ÊÖ
+     * è½å­
+     * @param x æ¨ªå‘ä¸‹æ ‡
+     * @param y çºµå‘ä¸‹æ ‡
+     * @param player æ¸¸æˆé€‰æ‰‹
      */
     public void addChess(int x, int y, Player player){
         if(mGameMap[x][y] == 0){
@@ -153,9 +151,9 @@ public class Game {
     }
     
     /**
-     * Âä×Ó
-     * @param c ÏÂ×ÓÎ»ÖÃ
-     * @param player ÓÎÏ·Ñ¡ÊÖ
+     * è½å­
+     * @param c ä¸‹å­ä½ç½®
+     * @param player æ¸¸æˆé€‰æ‰‹
      */
     public void addChess(Coordinate c, Player player){
         addChess(c.x, c.y, player);
@@ -170,7 +168,7 @@ public class Game {
     }
     
     /**
-     * ·µ»Øµ±Ç°Âä×Ó·½
+     * è¿”å›å½“å‰è½å­æ–¹
      * @return mActive
      */
     public int getActive(){
@@ -178,15 +176,15 @@ public class Game {
     }
     
     /**
-     * »ñÈ¡ÆåÅÌ
-     * @return ÆåÅÌÊı¾İ
+     * è·å–æ£‹ç›˜
+     * @return æ£‹ç›˜æ•°æ®
      */
     public int[][] getChessMap(){
         return mGameMap;
     }
     
     /**
-     * »ñÈ¡ÆåÅÌÀúÊ·
+     * è·å–æ£‹ç›˜å†å²
      * @return mActions
      */
     public Deque<Coordinate> getActions(){
@@ -194,7 +192,7 @@ public class Game {
     }
     
     /**
-     * ÖØÖÃÓÎÏ·
+     * é‡ç½®æ¸¸æˆ
      */
     public void reset(){
         mGameMap = new int[mGameWidth][mGameHeight];
@@ -203,7 +201,7 @@ public class Game {
     }
     
     /**
-     * ²»ĞèÒª¸üĞÂÂä×Ó·½£¬Ë­ÊäË­ÏÈÊÖ
+     * ä¸éœ€è¦æ›´æ–°è½å­æ–¹ï¼Œè°è¾“è°å…ˆæ‰‹
      */
     public void resetNet(){
         mGameMap = new int[mGameWidth][mGameHeight];
@@ -226,7 +224,7 @@ public class Game {
         mNotify.sendMessage(msg);
     }
     
-    // ÅĞ¶ÏÊÇ·ñÎå×ÓÁ¬Öé
+    // åˆ¤æ–­æ˜¯å¦äº”å­è¿ç 
     private boolean isGameEnd(int x, int y, int type){
         int leftX = x-4 > 0? x-4 : 0;
         int rightX = x+4 < mGameWidth-1 ? x+4: mGameWidth-1;
@@ -234,14 +232,14 @@ public class Game {
         int bottomY = y + 4< mGameHeight-1 ? y+4: mGameHeight-1;
 
         int horizontal = 1;
-        // ºáÏòÏò×ó
+        // æ¨ªå‘å‘å·¦
         for (int i = x - 1; i >= leftX ; --i){
             if (mGameMap[i][y] != type){
                 break;
             } 
             ++horizontal;
         }
-        // ºáÏòÏòÓÒ
+        // æ¨ªå‘å‘å³
         for (int i = x + 1; i <= rightX ; ++i){
             if (mGameMap[i][y] != type){
                 break;
@@ -254,14 +252,14 @@ public class Game {
         }
         
         int vertical = 1;
-        // ×İÏòÏòÉÏ
+        // çºµå‘å‘ä¸Š
         for (int j = y - 1; j >= topY ; --j){
             if (mGameMap[x][j] != type){
                 break;
             } 
             ++vertical;
         }
-        // ×İÏòÏòÏÂ
+        // çºµå‘å‘ä¸‹
         for (int j = y + 1; j <= bottomY ; ++j){
             if (mGameMap[x][j] != type){
                 break;
@@ -274,14 +272,14 @@ public class Game {
         }
         
         int leftOblique = 1;
-        // ×óĞ±ÏòÉÏ
+        // å·¦æ–œå‘ä¸Š
         for (int i = x + 1,j = y - 1; i <= rightX && j >= topY ; ++i, --j){
             if (mGameMap[i][j] != type){
                 break;
             } 
             ++leftOblique;
         }
-        // ×óĞ±ÏòÏÂ
+        // å·¦æ–œå‘ä¸‹
         for (int i = x - 1,j = y + 1; i >= leftX && j <= bottomY ; --i, ++j){
             if (mGameMap[i][j] != type){
                 break;
@@ -294,14 +292,14 @@ public class Game {
         }
         
         int rightOblique = 1;
-        // ÓÒĞ±ÏòÉÏ
+        // å³æ–œå‘ä¸Š
         for (int i = x - 1,j = y - 1; i >= leftX && j >= topY ; --i, --j){
             if (mGameMap[i][j] != type){
                 break;
             } 
             ++rightOblique;
         }
-        // ÓÒĞ±ÏòÏÂ
+        // å³æ–œå‘ä¸‹
         for (int i = x + 1,j = y + 1; i <= rightX && j <= bottomY ; ++i, ++j){
             if (mGameMap[i][j] != type){
                 break;

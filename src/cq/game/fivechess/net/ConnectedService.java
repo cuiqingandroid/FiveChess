@@ -17,10 +17,9 @@ import android.util.Log;
 import static cq.game.fivechess.net.ConnectConstants.*;
 
 /**
- * Áª»ú´«Êä<br>
- * ´«ÊäÆåÅÌĞÅÏ¢¸ø¶Ô·½
+ * è”æœºä¼ è¾“<br>
+ * ä¼ è¾“æ£‹ç›˜ä¿¡æ¯ç»™å¯¹æ–¹
  * @author cuiqing
- * @email cuiqing19870826@163.com
  *
  */
 public class ConnectedService {
@@ -52,7 +51,7 @@ public class ConnectedService {
     }
     
     /**
-     * ÏÂ×Ó
+     * ä¸‹å­
      * @param x
      * @param y
      */
@@ -68,7 +67,7 @@ public class ConnectedService {
     }
     
     /**
-     * ÇëÇó»ÚÆå
+     * è¯·æ±‚æ‚”æ£‹
      */
     public void rollback(){
         byte[] data = new byte[2];
@@ -80,7 +79,7 @@ public class ConnectedService {
     }
     
     /**
-     * Í¬Òâ»ÚÆå
+     * åŒæ„æ‚”æ£‹
      */
     public void agreeRollback(){
         byte[] data = new byte[2];
@@ -92,7 +91,7 @@ public class ConnectedService {
     }
     
     /**
-     * ¾Ü¾ø»ÚÆå
+     * æ‹’ç»æ‚”æ£‹
      */
     public void rejectRollback(){
         byte[] data = new byte[2];
@@ -109,7 +108,7 @@ public class ConnectedService {
     }
     
     /**
-     * TCPÏûÏ¢½ÓÊÕÏß³Ì
+     * TCPæ¶ˆæ¯æ¥æ”¶çº¿ç¨‹
      */
     class GameReceiver extends Thread {
         
@@ -132,8 +131,8 @@ public class ConnectedService {
                 } else {
                     Socket s = new Socket();
                     InetSocketAddress addr = new InetSocketAddress(mIp, TCP_PORT);
-                    /* Á¬½ÓÊ§°Ü³¢ÊÔÖØÁ¬£¬ÖØÊÔ8´Î
-                     * ÒòÎª»úÆ÷ĞÔÄÜ²»Ò»Ñù²»ÄÜ±£Ö¤×÷ÎªServer¶ËµÄActivityÏÈÓÚ¿Í»§¶ËÆô¶¯
+                    /* è¿æ¥å¤±è´¥å°è¯•é‡è¿ï¼Œé‡è¯•8æ¬¡
+                     * å› ä¸ºæœºå™¨æ€§èƒ½ä¸ä¸€æ ·ä¸èƒ½ä¿è¯ä½œä¸ºServerç«¯çš„Activityå…ˆäºå®¢æˆ·ç«¯å¯åŠ¨
                      */
                     int retryCount = 0;
                     while (retryCount < 8){
@@ -150,7 +149,7 @@ public class ConnectedService {
                                 Thread.sleep(200);
                             } catch (InterruptedException e1) {
                             }
-                            Log.d(TAG, "connect exception £º"+e.getMessage()+"  retry count="+retryCount);
+                            Log.d(TAG, "connect exception ï¼š"+e.getMessage()+"  retry count="+retryCount);
                         }
                     }
                     if (retryCount >= 8){
@@ -168,19 +167,19 @@ public class ConnectedService {
                 is = mSocket.getInputStream();
                 while (!isStop){
                     if (is.read(buf) == -1){
-                        // Á¬½Ó¶Ï¿ª
+                        // è¿æ¥æ–­å¼€
                         break;
                     }
                     if (DEBUG) Log.d(TAG, "tcp received:"+Arrays.toString(buf));
                     int length = buf[0];
-                    // ´ÓbufferÖĞ½ØÈ¡ÊÕµ½µÄÊı¾İ
+                    // ä»bufferä¸­æˆªå–æ”¶åˆ°çš„æ•°æ®
                     byte[] body = new byte[length];
                     System.arraycopy(buf, 1, body, 0, length);
                     processNetData(body);
                 }
             } catch (IOException e) {
                 Log.d(TAG, "IOException:"+"an error occurs while receiving data");
-                // TODO ÌáÊ¾Á¬½Ó¶Ï¿ª
+                // TODO æç¤ºè¿æ¥æ–­å¼€
             }
 
         }
@@ -202,7 +201,7 @@ public class ConnectedService {
     }
     
     /**
-     * °ÑÏûÏ¢½»¸øTCP·¢ËÍÏß³Ì·¢ËÍ
+     * æŠŠæ¶ˆæ¯äº¤ç»™TCPå‘é€çº¿ç¨‹å‘é€
      */
     class GameSender extends Handler {
         
@@ -220,7 +219,7 @@ public class ConnectedService {
                     return;
                 }
                 OutputStream os = s.getOutputStream();
-                // ·¢ËÍÊı¾İ
+                // å‘é€æ•°æ®
                 os.write(data);
                 os.flush();
             } catch (IOException e) {
@@ -236,7 +235,7 @@ public class ConnectedService {
         
     };
     
-    // ´¦ÀíÏûÏ¢
+    // å¤„ç†æ¶ˆæ¯
     private void processNetData(byte[] data){
         int type = data[0];
         switch (type) {

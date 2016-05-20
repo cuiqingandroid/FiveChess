@@ -3,17 +3,15 @@ package cq.game.fivechess.game;
 public class Player {
 
     String mName;
-//    String mIp;
-    // 白子还是黑子
+    // 鐧藉瓙杩樻槸榛戝瓙
     int type;
-    // 胜局
+    // 鑳滃眬
     int mWin;
-    // 败局
+    // 璐ュ眬
     int mLose;
     
     public Player(String name, int type){
         this.mName = name;
-//        this.mIp = ip;
         this.type = type;
     }
     
@@ -31,7 +29,7 @@ public class Player {
     }
     
     /**
-     * 胜一局
+     * 鑳滀竴灞�
      */
     public void win(){
         mWin += 1;
@@ -42,7 +40,7 @@ public class Player {
     }
     
     /**
-     * 负一局
+     * 璐熶竴灞�
      */
     public void lose(){
         mLose += 1;

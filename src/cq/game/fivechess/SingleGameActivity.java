@@ -33,15 +33,15 @@ public class SingleGameActivity extends Activity implements OnClickListener{
     
     ComputerAI ai;
     
-    // Ê¤¾Ö
+    // èƒœå±€
     private TextView mBlackWin;
     private TextView mWhiteWin;
     
-    // µ±Ç°Âä×Ó·½
+    // å½“å‰è½å­æ–¹
     private ImageView mBlackActive;
     private ImageView mWhiteActive;
     
-    // ĞÕÃû
+    // å§“å
     private TextView mBlackName;
     private TextView mWhiteName;
     
@@ -54,12 +54,12 @@ public class SingleGameActivity extends Activity implements OnClickListener{
     private boolean isRollback;
     
     /**
-     * ´¦ÀíÓÎÏ·»Øµ÷ĞÅÏ¢£¬Ë¢ĞÂ½çÃæ
+     * å¤„ç†æ¸¸æˆå›è°ƒä¿¡æ¯ï¼Œåˆ·æ–°ç•Œé¢
      */
     private Handler mComputerHandler ;
 
     /**
-     * ´¦ÀíÓÎÏ·»Øµ÷ĞÅÏ¢£¬Ë¢ĞÂ½çÃæ
+     * å¤„ç†æ¸¸æˆå›è°ƒä¿¡æ¯ï¼Œåˆ·æ–°ç•Œé¢
      */
     private Handler mRefreshHandler = new Handler(){
         
@@ -68,10 +68,10 @@ public class SingleGameActivity extends Activity implements OnClickListener{
             switch (msg.what) {
             case GameConstants.GAME_OVER:
                 if (msg.arg1 == Game.BLACK){
-                    showWinDialog("ºÚ·½Ê¤£¡");
+                    showWinDialog("é»‘æ–¹èƒœï¼");
                     me.win();
                 } else if (msg.arg1 == Game.WHITE) {
-                    showWinDialog("°×·½Ê¤£¡");
+                    showWinDialog("ç™½æ–¹èƒœï¼");
                     computer.win();
                 } 
                 updateScore(me, computer);
@@ -169,7 +169,7 @@ public class SingleGameActivity extends Activity implements OnClickListener{
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setCancelable(false);
         b.setMessage(message);
-        b.setPositiveButton("¼ÌĞø", new DialogInterface.OnClickListener() {
+        b.setPositiveButton("ç»§ç»­", new DialogInterface.OnClickListener() {
             
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -177,7 +177,7 @@ public class SingleGameActivity extends Activity implements OnClickListener{
                 mGameView.drawGame();
             }
         });
-        b.setNegativeButton("ÍË³ö", new DialogInterface.OnClickListener() {
+        b.setNegativeButton("é€€å‡º", new DialogInterface.OnClickListener() {
             
             @Override
             public void onClick(DialogInterface dialog, int which) {

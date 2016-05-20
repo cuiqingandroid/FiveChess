@@ -1,7 +1,5 @@
 package cq.game.fivechess.game;
 
-
-
 public class ComputerAI {
 
     public static final int HOR = 1;
@@ -9,9 +7,9 @@ public class ComputerAI {
     public static final int HOR_VER = 3;
     public static final int VER_HOR = 4;
     
-//    private static final int FIVE = 100; // »îÎå
-//    private static final int L_FOUR = 90; // »îËÄ
-//    private static final int D_FOUR = 100; // ËÀËÄ
+//    private static final int FIVE = 100; // æ´»äº”
+//    private static final int L_FOUR = 90; // æ´»å››
+//    private static final int D_FOUR = 100; // æ­»å››
     
     private int mWidth = 0;
     private int mHeight = 0;
@@ -22,7 +20,7 @@ public class ComputerAI {
     int[][][] white = null;
     
     // the value of position which has different performance
-    // Îå×ÓÆåÖĞµÄ¸÷¸öµãµÄÈ¨Öµ
+    // äº”å­æ£‹ä¸­çš„å„ä¸ªç‚¹çš„æƒå€¼
     int[][] plaValue = {{2,6,173,212,250,250,250},{0,5,7,200,230,231,231},
                         {0,0,0,0,230,230,230,0}};
     int[][] cpuValue = {{0,3,166,186,229,229,229},{0,0,5,167,220,220,220},
@@ -42,7 +40,7 @@ public class ComputerAI {
     }
     
     /**
-     * ¸üĞÂÆåÅÌÈ¨Öµ
+     * æ›´æ–°æ£‹ç›˜æƒå€¼
      * @param game
      */
     public void updateValue(Game game){
@@ -51,8 +49,7 @@ public class ComputerAI {
     }
     
     /**
-     * ¸üĞÂÆåÅÌÈ¨Öµ
-     * @param game
+     * æ›´æ–°æ£‹ç›˜æƒå€¼
      */
     public void updateValue(int[][] map)
     {
@@ -66,8 +63,8 @@ public class ComputerAI {
                 if(map[i][j] == 0)
                 {
                     int counter = 0;
-                    // ¶Ô²»Í¬µÄÇé¿ö¸øÓë²»Í¬µÄÈ¨Öµ
-                    // ×İÏò
+                    // å¯¹ä¸åŒçš„æƒ…å†µç»™ä¸ä¸åŒçš„æƒå€¼
+                    // çºµå‘
                     for(int k = j + 1; k < mHeight; k ++)
                     {
                             
@@ -105,7 +102,7 @@ public class ComputerAI {
                     computerValue[0] = 0;
                     counter = 0;
                     
-                    // ·´Ğ±Ïß
+                    // åæ–œçº¿
                     for(int k = i + 1, l = j + 1; l < mHeight; k ++, l ++)
                     {   
                         if(k >= mHeight)
@@ -154,7 +151,7 @@ public class ComputerAI {
                     computerValue[1] = 0;
                     counter = 0;
                     
-                    // ºáÏò
+                    // æ¨ªå‘
                     for(int k = i + 1; k < mWidth; k ++)
                     {
                     
@@ -194,7 +191,7 @@ public class ComputerAI {
                     computerValue[2] = 0;
                     counter = 0;
                     
-                    // ÕıĞ±Ïß
+                    // æ­£æ–œçº¿
                     for(int k = i - 1, l = j + 1; l < mWidth; k --, l ++)
                     {
                         
@@ -243,7 +240,7 @@ public class ComputerAI {
                     computerValue[3] = 0;
                     counter = 0;
                     
-                    // Í¬Ê±ÅĞ¶ÏÁ½¸ö·½ÏòÉÏµÄÈ¨Öµ£¬²¢¸øËûÒ»¸öÊÊµ±µÄÈ¨Öµ
+                    // åŒæ—¶åˆ¤æ–­ä¸¤ä¸ªæ–¹å‘ä¸Šçš„æƒå€¼ï¼Œå¹¶ç»™ä»–ä¸€ä¸ªé€‚å½“çš„æƒå€¼
                     for(int k = 0; k < 4; k ++)
                     {
                         if(white[i][j][k] == 173)
@@ -282,7 +279,7 @@ public class ComputerAI {
                                     }
                                 }
                             }
-                            // Èç¹ûÁ½¸ö·½ÏòÉÏµÄÈ¨Öµ¶¼ÊÇ»îÈı£¬½µµÍÈ¨Öµ
+                            // å¦‚æœä¸¤ä¸ªæ–¹å‘ä¸Šçš„æƒå€¼éƒ½æ˜¯æ´»ä¸‰ï¼Œé™ä½æƒå€¼
                             if(white[i][j-1][0] == 173)
                             {
                                 for(int k = 0; k < 4; k ++)
