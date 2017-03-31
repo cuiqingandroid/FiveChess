@@ -96,12 +96,15 @@ public class Game {
     public boolean addChess(int x, int y){
         if (mMode == GameConstants.MODE_FIGHT){
             if(mGameMap[x][y] == 0){
+                int type ;
                 if (mActive == BLACK){
                     mGameMap[x][y] = BLACK;
+                    type = Game.BLACK;
                 } else {
                     mGameMap[x][y] = WHITE;
+                    type = Game.WHITE;
                 }
-                if(!isGameEnd(x, y, me.type)){
+                if(!isGameEnd(x, y, type)){
                     changeActive();
                     sendAddChess(x, y);
                     mActions.add(new Coordinate(x, y));
