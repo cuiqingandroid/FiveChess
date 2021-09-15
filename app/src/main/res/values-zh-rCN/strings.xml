@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">五子棋</string>
+    <string name="action_settings">设置</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="scan">扫描</string>
+    <string name="new_game">人机对战</string>
+    <string name="fight">两人对战</string>
+    <string name="fight_connection">联网PK</string>
+    <string name="Role_black">黑方</string>
+    <string name="Role_white">白方</string>
+    <string name="agree">同意</string>
+    <string name="reject">拒绝</string>
+    <string name="fight_request">请求和你对战</string>
+    <string name="connections">联机</string>
+    <string name="chat_send">发送</string>
+    <string name="black">黑方</string>
+    <string name="white">白方</string>
+    <string name="restart">新开</string>
+    <string name="rollback">悔棋</string>
+    <string name="about">关于</string>
+    <string name="exit">退出</string>
+    <string name="equal">求和</string>
+    <string name="fail">认输</string>
+    <string name="myself">自己</string>
+    <string name="challenger">对手</string>
+    <string name="computer">电脑</string>
+    <string name="setting">设置</string>
+    <string name="ok">确定</string>
+    <string name="Continue">继续</string>
+</resources>

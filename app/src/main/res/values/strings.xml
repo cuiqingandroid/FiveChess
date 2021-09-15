@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FiveChess</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="scan">Scan</string>
+    <string name="new_game">New Game</string>
+    <string name="fight">Fight</string>
+    <string name="fight_connection">Network Fight</string>
+    <string name="Role_black">Black Player</string>
+    <string name="Role_white">White Player</string>
+    <string name="agree">Agree</string>
+    <string name="reject">Reject</string>
+    <string name="fight_request">ask for fight with you</string>
+    <string name="connections">Connections</string>
+    <string name="chat_send">Send</string>
+    <string name="black">Black</string>
+    <string name="white">White</string>
+    <string name="restart">New Game</string>
+    <string name="rollback">Rollback</string>
+    <string name="about">About</string>
+    <string name="exit">Exit</string>
+    <string name="equal">Equal</string>
+    <string name="fail">Fail</string>
+    <string name="myself">Me</string>
+    <string name="challenger">Challenger</string>
+    <string name="computer">Computer</string>
+    <string name="setting">Setting</string>
+    <string name="ok">OK</string>
+    <string name="Continue">Continue</string>
+</resources>
